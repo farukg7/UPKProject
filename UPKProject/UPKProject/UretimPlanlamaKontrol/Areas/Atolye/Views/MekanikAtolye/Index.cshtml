@@ -1,0 +1,29 @@
+﻿@model IEnumerable<AtolyeIslerViewModel>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Ürün Adı</th>
+            <th>Ürün Miktarı</th>
+            <th>Operasyon</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (AtolyeIslerViewModel atl in Model)
+        {
+            <tr>
+                <td>@atl.UrunAdi</td>
+                <td>@atl.UrunMiktari</td>
+                <td>
+                    <form method="post" asp-action="SonrakiIstasyon">
+                        <input type="hidden" name="urnid" value="@atl.UrunId" />
+                        <input type="hidden" name="atlid" value="@atl.AtolyeId" />
+                        <button type="submit" class="btn btn-outline-success">
+                            Sonraki İstasyon
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

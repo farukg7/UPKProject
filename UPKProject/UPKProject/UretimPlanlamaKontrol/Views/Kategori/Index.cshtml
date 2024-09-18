@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Kategori>
+
+<div class="text-center my-3">
+    <h6 class="display-6">
+        Kategoriler
+    </h6>
+</div>
+
+<ul class="list-group my-4">
+    @foreach(Kategori ktg in Model)
+    {
+        <li class="list-group-item">@ktg.KategoriAdi</li>
+    }
+</ul>

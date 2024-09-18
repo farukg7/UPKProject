@@ -1,0 +1,49 @@
+﻿.table-section {
+    height: 50vh; /* Sayfanın yarısını kaplayacak şekilde ayarlayın */
+    overflow-y: auto; /* Taşan içeriği dikey olarak kaydırmak için */
+    background-color: #f8f9fa; /* Arka plan rengi */
+}
+
+.table thead th {
+    position: sticky; /* Sabit pozisyonlama */
+    top: 0; /* Sabitlenmiş elemanın üstten uzaklığı */
+    background-color: #fff; /* Arka plan rengi */
+    z-index: 1; /* Üstte kalmasını sağlamak için */
+}
+
+/* İsteğe bağlı olarak tfoot da sabitlenebilir */
+.table tfoot td {
+    position: sticky; /* Sabit pozisyonlama */
+    bottom: 0; /* Sabitlenmiş elemanın alttan uzaklığı */
+    background-color: #fff; /* Arka plan rengi */
+    z-index: 1; /* Üstte kalmasını sağlamak için */
+    font-weight: bold; /* Kalın punto */
+}
+
+/* Alt bölüm (arka plan resmi ve ilerleme çubukları) */
+.section-background-1 {
+    position: relative;
+    height: 35vh; /* Sayfanın yarısını kaplayacak şekilde ayarlayın */
+    background-image: url('/images/atolye.jpg'); /* Fotoğrafın yolu */
+    background-size: cover; /* Fotoğrafın kapsaması için */
+    background-position: center; /* Fotoğrafın ortalanması için */
+    background-repeat: no-repeat; /* Fotoğrafın tekrarını engellemek için */
+}
+
+    .section-background-1::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.2); /* Beyaz arka plan ile %20 saydamlık */
+        z-index: 1; /* İçerikleri üstte göstermek için */
+    }
+
+.section-content {
+    position: relative;
+    z-index: 2; /* İçeriğin üstte kalmasını sağlamak için */
+    padding: 1rem; /* İçeriğin kenarlardan uzak durmasını sağlamak için */
+    color: white; /* Metin rengini beyaz yap */
+}

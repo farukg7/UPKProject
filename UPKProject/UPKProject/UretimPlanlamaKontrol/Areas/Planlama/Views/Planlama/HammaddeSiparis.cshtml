@@ -1,0 +1,39 @@
+﻿@model IEnumerable<HammaddeSiparisViewModel>
+
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="text-center flex-grow-1">Hammadde Siparişleri</h2>
+    <a class="btn btn-outline-success ms-3" asp-action="HammaddeSiparisOlustur">
+        <i class="fa-solid fa-gift"></i>
+        Hammadde Siparişi Oluştur
+    </a>
+</div>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Hammadde Adı</th>
+            <th>Tedarikçi Adı</th>
+            <th>Sipariş Miktarı</th>
+            <th>Teslim Miktarı</th>
+            <th>Birimi</th>
+            <th>Sipariş Tarihi</th>
+            <th>Teslim Tarihi</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (HammaddeSiparisViewModel usp in Model)
+        {
+            <tr>
+                <td>@usp.HammaddeAdi</td>
+                <td>@usp.TedarikciAdi</td>
+                <td>@usp.HammaddeSiparisAdedi</td>
+                <td>@usp.HammaddeGelenAdet</td>
+                <td>@usp.HammaddeSiparisBirimi</td>
+                <td>@(usp.HammaddeSiparisTarihi?.ToString("dd/MM/yyyy"))</td>
+                <td>@(usp.HammaddeTeslimTarihi?.ToString("dd/MM/yyyy"))</td>              
+            </tr>
+        }
+    </tbody>
+</table>
+</div>

@@ -1,0 +1,39 @@
+﻿@model Hammadde
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="text-center">
+            <h6 class="display-6">
+                @Model.HammaddeAdi
+            </h6>
+
+            <img class="img-fluid shadow rounded-3 my-3" src="@Model?.HammaddeResimUrl" alt="@Model?.HammaddeAdi"
+
+        </div>
+    </div>
+</div>
+
+<div class="text-center">
+    <h3>@Model.HammaddeAdi</h3>
+<p>@Model.AlisFiyati</p>
+
+
+<div class="btn btn-group">
+    <a class="btn btn-secondary" asp-controller="Hammadde" asp-action="Index">
+        <i class="fa-solid fa-cart-plus"></i>
+        Hammaddeler
+    </a>
+        <form id="@Model.HammaddeId" asp-page="/plan" method="post">
+            <input type="hidden" asp-for="HammaddeId" />
+        <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+            <button type="submit" class="btn btn-outline-secondary">
+            <i class="fa fa-cart-plus"></i>
+            Plana Ekle
+        </button>
+    </form>
+    <a class="btn btn-outline-secondary" asp-controller="Home" asp-action="Index">
+        <i class="fa-solid fa-house"></i>
+        Ana Sayfa
+    </a>
+</div>
+</div>

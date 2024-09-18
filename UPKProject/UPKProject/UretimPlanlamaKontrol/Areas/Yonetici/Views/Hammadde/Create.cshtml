@@ -1,0 +1,46 @@
+﻿@model HammaddeDtoForInsertion
+
+<div class="text-center mb-4">
+    <div class="display-6">Create</div>
+</div>
+
+<form method="post" asp-action="Create" enctype="multipart/form-data">  @* Resim bilgilerini taşımak için mutipart alanı tanımlamak zorundayız *@
+
+@*     <div class="text-danger" asp-validation-summary="All"></div>
+ *@
+
+    <div class="form-group my-3">
+        <label asp-for="KategoriId"></label>
+        <select class="form-control" asp-items="@ViewBag.Kategoriler" asp-for="KategoriId">
+        </select>
+    </div>
+    <div class="form-group my-3">
+        <label asp-for="Adi">Hammadde Adı</label>
+        <input asp-for="Adi" class="form-control" />
+    </div>
+    <div class="form-group my-3">
+        <label asp-for="AlisFiyati">Alış Fiyatı</label>
+        <input asp-for="AlisFiyati" class="form-control" />
+    </div>
+    <div class="form-group my-3">
+        <label asp-for="OzetBilgi">Hammadde Detay Bilgileri</label>
+        <input asp-for="OzetBilgi" class="form-control" />
+    </div>
+    <div class="form-group my-3">
+        <label asp-for="ResimUrl">Dosya Yolu</label>
+        <input name="file" type="file" class="form-control" />
+    </div>
+
+    <div class="form-group my-3">
+        <div class="btn-group">
+        <button class="btn btn-primary" type="submit">
+            <i class="fa fa-save"></i>
+            Oluştur
+        </button>
+        <a asp-action="Index" class="btn btn-outline-primary">
+            <i class="fa fa-list"></i>
+            Ürünler
+            </a>
+        </div>
+    </div>
+</form>

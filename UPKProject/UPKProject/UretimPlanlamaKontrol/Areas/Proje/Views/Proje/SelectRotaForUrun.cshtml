@@ -1,0 +1,66 @@
+﻿@model UrunRotaViewModel
+
+<div class="text-center">
+
+    <div class="text-center mb-5">
+        <div class="display-3">@Model.UrunAdi</div>
+    </div>
+
+    <form method="post" asp-action="SelectRotaForUrunPost">
+        <div class="form-group my-3">
+            <label class="h3">Rotalar</label>
+            <div id="atolyelerContainer" class="mb-3">
+            </div>
+            <button type="button" class="btn btn-outline-secondary" onclick="addRota()">
+                <i class="fa fa-plus"></i> Rota Ekle
+            </button>
+        </div>
+
+        <div class="form-group my-3">
+            <div class="btn-group">
+                <button class="btn btn-primary" type="submit">
+                    <i class="fa-solid fa-layer-group"></i>
+                    Rotaları Oluştur
+                </button>
+                <a asp-action="Index" class="btn btn-outline-primary">
+                    <i class="fa fa-list"></i>
+                    Ürünler
+                </a>
+            </div>
+        </div>
+    </form>
+
+    @section Scripts {
+        <script>
+            var atolyeSelectList = @Html.Raw(JsonConvert.SerializeObject(ViewBag.Atolyeler));
+
+            var islemSiraCounter = 1;
+
+            function addRota() {
+                var container = document.getElementById("atolyelerContainer");
+                var rotaDiv = document.createElement("div");
+
+                var selectHtml = `<select name="Rotalar[${container.children.length}].AtolyeId" class="form-control">`;
+                atolyeSelectList.forEach(function (atolye) {
+                    selectHtml += `<option value="${atolye.Value}">${atolye.Text}</option>`;
+                });
+                selectHtml += `</select>`;
+
+                rotaDiv.innerHTML = `
+                                <div class="form-group my-2">
+                                <label>Hammadde Seç</label>
+                                ${selectHtml}
+                                </div>
+                                <div class="form-group my-2">
+                                <label>Miktar</label>
+                                <input type="text" name="Rotalar[${container.children.length}].IslemSure" class="form-control" placeholder="İşlem Süresi"/>
+                                </div>                                
+                                <input type="hidden" name="Rotalar[${container.children.length}].IslemSırası" value="${islemSiraCounter}"/>
+                                `;
+                container.appendChild(rotaDiv);
+                islemSiraCounter++;
+            }
+        </script>
+    }
+</div>
+

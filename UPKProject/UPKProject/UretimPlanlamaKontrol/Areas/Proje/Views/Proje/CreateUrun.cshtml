@@ -1,0 +1,41 @@
+﻿@model Urun
+
+<div class="text-center mb-4">
+    <div class="display-6">Ürün Ekle</div>
+</div>
+
+<form method="post" asp-action="CreateUrun" enctype="multipart/form-data">
+
+    @*     <div class="text-danger" asp-validation-summary="All"></div>
+    *@
+
+    <div class="form-group my-3">
+        <label asp-for="ProjeId"></label>
+        <select class="form-control" asp-items="@ViewBag.Projeler" asp-for="ProjeId">
+        </select>
+    </div>
+    <div class="form-group my-3">
+        <label asp-for="UrunAdi">Ürün Adı</label>
+        <input asp-for="UrunAdi" class="form-control" />
+    </div>
+    <div class="form-group my-3">
+        <label asp-for="UrunResimUrl">Dosya Yolu</label>
+        <input name="file" type="file" class="form-control" />
+    </div>  
+
+    <div class="form-group text-center my-3">
+        <div class="btn-group">
+            <button class="btn btn-primary" type="submit">
+                <i class="fa fa-save"></i>
+                Oluştur
+            </button>
+            <a asp-action="Index" class="btn btn-outline-primary">
+                <i class="fa fa-list"></i>
+                Ürünler
+            </a>
+        </div>
+    </div>
+</form>
+
+
+

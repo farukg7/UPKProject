@@ -1,0 +1,36 @@
+﻿@model Hammadde
+
+<div class="col-md-4 col-sm-12 my-2">
+    <div class="card" style="display: flex; flex-direction: column; height: 100%;">
+        <div class="card-header" style="flex-shrink: 0;">
+            @Model.HammaddeAdi
+        </div>
+        <img src="@Model?.HammaddeResimUrl" class="card-img-top" alt="..." style="width: 100%; height: auto; object-fit: contain;" />
+        <div class="card-body" style="flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+            <div class="card-text">
+                <div class="text-danger text-center lead p-2 rounded-2">
+                    @Model?.AlisFiyati
+                </div>
+            </div>
+            <p class="card-text">@Model?.OzetBilgi</p>
+            <div class="d-flex justify-content-center">
+                <div class="btn btn-group">
+                    <a asp-controller="Hammadde" asp-action="Get"
+                       asp-route-id="@Model?.HammaddeId"
+                       class="btn btn-outline-secondary mx-1 rounded">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <form id="@Model?.HammaddeId" asp-page="/plan" method="post">
+                        <input type="hidden" asp-for="HammaddeId" />
+                        <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+                        <button type="submit" class="btn btn-outline-secondary">
+                            <i class="fa fa-cart-plus"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* birden fazla alanda kullanıldığı için shared altına aldık *@

@@ -1,0 +1,57 @@
+﻿@model IEnumerable<UrunSiparisRotaViewModel>
+
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="text-center flex-grow-1">Müşteri Siparişleri</h2>
+    <a class="btn btn-outline-success ms-3" asp-action="UrunSiparisOlustur">
+        <i class="fa-solid fa-gift"></i>
+        Müşteri Siparişi Oluştur
+    </a>
+</div>
+
+
+
+<table class="table table-hover"> 
+   <thead>
+       <tr>
+            <th>Ürün Adı</th>           
+            <th>Sipariş Miktarı</th>
+            <th>Teslim Miktarı</th>
+            <th>Sipariş Tarihi</th>
+            <th>Teslim Tarihi</th>
+            <th>Plana Ekle</th>
+            <th>İş Oluştur</th>
+       </tr>
+   </thead>
+   <tbody>
+        @foreach(UrunSiparisRotaViewModel usp in Model)
+        {   
+        <tr>
+                <td>@usp.UrunAdi</td>
+                <td>@usp.UrunSiparisAdedi</td>
+                <td>@usp.UrunTeslimMiktari</td>
+                <td>@(usp.UrunSiparisTarihi.HasValue ? usp.UrunSiparisTarihi.Value.ToString("dd/MM/yyyy") : "Tarih Yok")</td>
+                <td>@(usp.UrunTeslimTarihi.HasValue ? usp.UrunTeslimTarihi.Value.ToString("dd/MM/yyyy") : "Tarih Yok")</td>
+                <td>
+                    <form method="post" asp-action="PlanaEkle">
+                        <input type="hidden" name="id" value="@usp.UrunId" />
+                        <button type="submit" class="btn btn-outline-success">
+                            <i class="fa-solid fa-bars-progress"></i>
+                            Plana Ekle
+                        </button>
+                    </form>
+                </td>
+                <td>
+                    <form method="post" asp-action="Gonder">
+                        <input type="hidden" name="id" value="@usp.UrunId" />
+                        <button type="submit" class="btn btn-outline-success">
+                            <i class="fa-solid fa-dolly"></i>
+                            İş Oluştur
+                        </button>
+                    </form>
+                </td>
+       </tr>
+        }
+   </tbody>
+</table>
+</div>

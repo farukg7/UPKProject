@@ -1,0 +1,63 @@
+﻿@model UrunHammaddeViewModel
+
+
+<div class="text-center">
+
+    <div class="text-center mb-5">
+        <div class="display-3">@Model.UrunAdi</div>
+    </div>
+
+    <form method="post" asp-action="SelectHammaddeForUrunPost">
+        <div class="form-group my-3">
+            <label class="h3">Hammaddeler</label>
+            <div id="hammaddelerContainer" class="mb-3">
+            </div>
+            <button type="button" class="btn btn-outline-secondary" onclick="addHammadde()">
+                <i class="fa fa-plus"></i> Hammadde Ekle
+            </button>
+        </div>
+
+        <div class="form-group my-3">
+            <div class="btn-group">
+                <button class="btn btn-primary" type="submit">
+                    <i class="fa-solid fa-layer-group"></i>
+                    Hammaddeleri Ekle
+                </button>
+                <a asp-action="Index" class="btn btn-outline-primary">
+                    <i class="fa fa-list"></i>
+                    Ürünler
+                </a>
+            </div>
+        </div>
+    </form>
+
+    @section Scripts {
+        <script>
+            var hammaddeSelectList = @Html.Raw(JsonConvert.SerializeObject(ViewBag.Hammaddeler));
+
+            function addHammadde() {
+                var container = document.getElementById("hammaddelerContainer");
+                var hammaddeDiv = document.createElement("div");
+
+                var selectHtml = `<select name="Hammaddeler[${container.children.length}].HammaddeId" class="form-control">`;
+                hammaddeSelectList.forEach(function (hammadde) {
+                    selectHtml += `<option value="${hammadde.Value}">${hammadde.Text}</option>`;
+                });
+                selectHtml += `</select>`;
+
+                hammaddeDiv.innerHTML = `
+                    <div class="form-group my-2">
+                    <label>Hammadde Seç</label>
+                    ${selectHtml}
+                    </div>
+                    <div class="form-group my-2">
+                    <label>Miktar</label>
+                    <input type="text" name="Hammaddeler[${container.children.length}].KullanılacakAdet" class="form-control" placeholder="Miktar"/>
+                    </div>
+                    `;
+                container.appendChild(hammaddeDiv);
+            }
+        </script>
+    }
+</div>
+

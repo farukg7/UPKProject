@@ -1,0 +1,54 @@
+﻿@page "/plan"
+@model PlanModel
+
+<div>
+    <div class="text-center display-6">
+        Plan
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Hammadde</th>
+                <th>Miktar</th>
+                <th>Fiyat</th>
+                <th>Toplam</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var line in Model.Plan?.Lines ?? Enumerable.Empty<PlanLine>())
+            {
+                <tr>
+                    <td>@line.Hammadde.HammaddeAdi</td>
+                    <td>@line.Miktar</td>
+                    <td>@line.Hammadde.AlisFiyati</td>
+                    <td>@((line.Hammadde.AlisFiyati*line.Miktar).ToString())</td>
+                    <td>
+                        <form method="post" asp-page-handler="Remove"> @* asp-page-handler ifadesi ilk defa gördüğümüz bir ifade burada controller yapısı olmadığı için method ismini asp-page-handler yapısıyla ifade ediyoruz *@
+                            <input type="hidden" name="id" value="@line.Hammadde.HammaddeId" />
+                            <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+                            <button type="submit" class="btn btn-sm btn-danger">
+                                <i class="fa fa-trash"></i>
+                                Kaldır
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="text-right">Total :</td>
+                <td class="text-right text-danger">
+                    @Model.Plan.ToplamFiyatHesapla().ToString();
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    <div class="text-center my-3">
+        <div class="btn-group">
+            <a class="btn btn-primary" href="@Model?.ReturnUrl">Plana devam et</a>
+            <a class="btn btn-primary mx-2" asp-action="Checkout" asp-controller="Siparis">Checkout</a>
+        </div>
+    </div>
+</div>

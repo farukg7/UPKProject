@@ -1,0 +1,43 @@
+﻿@model HammaddeSiparisViewModel
+
+<div class="text-center mb-4">
+    <div class="display-6">Hammadde Siparişi Oluştur</div>
+</div>
+
+<form method="post" asp-action="HammaddeSiparisOlustur">
+    <div class="form-group my-3">
+        <label asp-for="HammaddeId"></label>
+        <select class="form-control" asp-items="@ViewBag.Hammaddeler" asp-for="HammaddeId">
+        </select>
+    </div>
+    <div class="form-group my-3">
+        <label asp-for="TedarikciId"></label>
+        <select class="form-control" asp-items="@ViewBag.Tedarikciler" asp-for="TedarikciId">
+        </select>
+    </div>
+    <div class="form-group my-3">
+        <label asp-for="HammaddeSiparisAdedi">Hammadde Sipariş Adedi</label>
+        <input asp-for="HammaddeSiparisAdedi" class="form-control" />
+    </div>
+    <div class="form-group my-3">
+        <label asp-for="HammaddeSiparisBirimi">Birimi</label>
+        <input asp-for="HammaddeSiparisBirimi" class="form-control" />
+    </div>
+    <div class="form-group my-3">
+        <label asp-for="HammaddeTeslimTarihi">UrunTeslimTarihi</label>
+        <input asp-for="HammaddeTeslimTarihi" class="form-control" />
+    </div>
+
+    <div class="form-group my-3">
+        <div class="btn-group">
+            <button class="btn btn-primary" type="submit">
+                <i class="fa fa-save"></i>
+                Oluştur
+            </button>
+            <a asp-action="Index" class="btn btn-outline-primary">
+                <i class="fa fa-list"></i>
+                Ürünler
+            </a>
+        </div>
+    </div>
+</form>

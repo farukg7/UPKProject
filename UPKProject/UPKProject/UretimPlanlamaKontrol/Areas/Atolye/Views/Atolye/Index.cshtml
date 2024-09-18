@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Atolye>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Atölye Adı</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(Atolye atl in Model)
+        {
+            <tr>
+                <td>@atl.AtolyeAdi</td>
+            </tr>
+        }
+    </tbody>
+</table>

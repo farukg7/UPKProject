@@ -1,0 +1,63 @@
+﻿@model LoginModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Sayfası</title>
+    <link asp-append-version="true" rel="stylesheet" href="~/css/style1.css" />
+    <link asp-append-version="true" rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <link asp-append-version="true" rel="stylesheet" href="~/js/site.js" />
+    <link asp-append-version="true" rel="stylesheet" href="~/lib/font-awesome/css/all.css" />
+</head>
+<body>
+    
+    <div class="text-center my-5">
+        <h6 class="display-6">
+            <i class="fa-solid text-white-50 fa-right-to-bracket bg-secondary p-3 rounded-circle"></i>
+            <br />
+            Login
+        </h6>
+    </div>
+
+    <div class="row">
+        <div class="col-md-5"></div>
+        <div class="col-md-2 background-container">
+
+            <div class="text-danger" asp-validation-summary="All"></div>
+
+            <form method="post" asp-action="Login">
+                <div class="form-group">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" class="form-control" />
+                </div>
+                <div class="form-group my-3">
+                    <label asp-for="Password"></label>
+                    <input type="password" asp-for="Password" class="form-control" />
+                </div>
+                <div class="form-group my-3 d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                        Login
+                    </button>
+                </div>
+            </form>
+
+            <div class="text-white">
+                If you don't have an account, please click here to reach the <a asp-action="Register">registration page.</a>
+            </div>
+        </div>
+        <div class="col-md-5"></div>
+    </div>
+    <script asp-append-version="true" src="~/lib/jquery/jquery.min.js"></script>
+    <script asp-append-version="true" src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script asp-append-version="true" src="~/js/site.js"></script>
+    <script asp-append-version="true" src="~/lib/font-awesome/js/all.min.js"></script>   
+ 
+</body>
+</html>
+

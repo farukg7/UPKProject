@@ -1,0 +1,41 @@
+﻿@model IEnumerable<HammaddeSiparisViewModel>
+
+<div class="text-center my-3">
+    <div class="display-6">Hammadde Siparişleri</div>
+    </div>
+</div>
+
+<div class="container">
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Hammadde Adı</th>
+            <th>Sipariş Adedi</th>
+            <th>Teslim Miktarı</th>
+            <th>Birimi</th>
+            <th>Sipariş Tarihi</th>
+            <th>Teslim Tarihi</th>
+            <th>Mal Kabul</th>
+        </tr>
+    </thead>
+    <tbody>
+            @foreach (HammaddeSiparisViewModel hmd in Model)
+        {
+        <tr>
+            <td>@hmd.HammaddeAdi</td>
+            <td>@hmd.HammaddeSiparisAdedi</td>
+            <td>@hmd.HammaddeGelenAdet</td>
+            <td>@hmd.HammaddeSiparisBirimi</td>
+            <td>@hmd.HammaddeSiparisTarihi</td>
+            <td>@hmd.HammaddeTeslimTarihi</td>          
+            <td>
+                <a class="btn btn-outline-success" asp-action="MalKabul" asp-route-id="@hmd.HammaddeSiparisId">
+                <i class="fa-solid fa-gift"></i>
+                Mal Kabul
+                </a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+</div>

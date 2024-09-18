@@ -1,0 +1,61 @@
+﻿@model HammaddeDtoForUpdate
+
+<div class="text-center mb-4">
+    <div class="display-6">Güncelle</div>
+</div>
+
+<form method="post" asp-action="Update" enctype="multipart/form-data">
+
+@*     <div class="text-danger" asp-validation-summary="All"></div>
+ *@
+
+    <input type="hidden" asp-for="Id" />
+    @*  Eğer bu Id götürülmez ise ürünün yeni bir değil hali hazırda olan bir id ile ürün göndermiş oluyoruz
+ *@
+    <div class="form-group my-3">
+        <label asp-for="KategoriId"></label>
+        <select class="form-control" asp-items="@ViewBag.Kategoriler" asp-for="KategoriId">
+            @*       1. YONTEM      @foreach(Kategori ktg in ViewBag.Kategoriler)
+            {
+            <option value="@ktg.Id">@ktg.Adi</option>
+            }  asp-item bu yöntemde kullanılmıyor yeni yönetim için yazdık *@
+
+        </select>
+    </div>
+    <div class="form-group my-3">
+        <label asp-for="Adi">Hammadde Adı</label>
+        <input asp-for="Adi" class="form-control" />
+    </div>
+    <div class="form-group my-3">
+        <label asp-for="AlisFiyati">Alış Fiyatı</label>
+        <input asp-for="AlisFiyati" class="form-control" />
+    </div>
+    <div class="form-check form-switch">
+        <input asp-for="Vitrin" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+        <label class="form-check-label" for="flexSwitchCheckDefault">Showcase</label>
+    </div>
+    <div class="form-group my-3">
+        <label asp-for="OzetBilgi">Hammadde Detay Bilgileri</label>
+        <input asp-for="OzetBilgi" class="form-control" />
+    </div>
+    <div class="form-group my-3">
+        <img class="rounded shadow" width="150" src="@Model?.ResimUrl" />
+    </div>
+    <div class="form-group my-3">
+        <label asp-for="ResimUrl">Dosya Yolu</label>
+        <input type="file" name="file" class="form-control" />
+    </div>
+
+    <div class="form-group my-3">
+        <div class="btn-group">
+        <button class="btn btn-primary" type="submit">
+            <i class="fa fa-save"></i>
+            Güncelle
+        </button>
+        <a asp-action="Index" class="btn btn-outline-primary">
+            <i class="fa fa-list"></i>
+            Ürünler
+            </a>
+        </div>
+    </div>
+</form>

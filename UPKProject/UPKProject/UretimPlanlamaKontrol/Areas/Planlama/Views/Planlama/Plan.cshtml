@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Planlama>
+
+@{
+    var toplamMekanikSure = Model.Sum(pln => pln.Rotalar.Where(r => r.AtolyeId == 1).Sum(r=>r.IslemSure)*pln.UrunMiktari);
+    var toplamMontajSure = Model.Sum(pln => pln.Rotalar.Where(r => r.AtolyeId == 2).Sum(r => r.IslemSure)*pln.UrunMiktari);
+    var toplamKablajSure = Model.Sum(pln => pln.Rotalar.Where(r => r.AtolyeId == 3).Sum(r => r.IslemSure)*pln.UrunMiktari);
+    var toplamBoyaSure = Model.Sum(pln => pln.Rotalar.Where(r => r.AtolyeId == 4).Sum(r => r.IslemSure)*pln.UrunMiktari);
+
+    double mekanikSureYuzde = Math.Round(((double)toplamMekanikSure * 100/ 2700));
+    string mekanikSureYuzdeFormat ="% " + mekanikSureYuzde.ToString();
+    double montajSureYuzde = Math.Round(((double)toplamMontajSure * 100 / 2700));
+    string montajSureYuzdeFormat = "% " + montajSureYuzde.ToString();
+    double kablajSureYuzde = Math.Round(((double)toplamKablajSure * 100 / 2700));
+    string kablajSureYuzdeFormat = "% " + kablajSureYuzde.ToString();
+    double boyaSureYuzde = Math.Round(((double)toplamBoyaSure * 100 / 2700));
+    string boyaSureYuzdeFormat = "% " + boyaSureYuzde.ToString();
+}
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 table-section">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Ürün Adı</th>
+                        <th>Plan Miktarı</th>
+                        <th>Sipariş Tarihi</th>
+                        <th>Teslim Tarihi</th>
+                        <th>Mekanik Atölye(dk)</th>
+                        <th>Montaj Atölye(dk)</th>
+                        <th>Kablaj Atölye(dk)</th>
+                        <th>Boya Atölye(dk)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Planlama pln in Model)
+                    {
+                        <tr>
+                            <td>@pln?.Urun?.UrunAdi</td>
+                            <td>@pln?.UrunMiktari</td>
+                            <td>@pln?.UrunSiparis?.UrunSiparisTarihi?.ToString("yyyy-MM-dd")</td>
+                            <td>@pln?.UrunSiparis?.UrunTeslimTarihi?.ToString("yyyy-MM-dd")</td>
+                            <td>@pln?.Rotalar.Where(r => r.AtolyeId == 1 && r.UrunId == pln.UrunId)?.Sum(r => r.IslemSure * pln.UrunMiktari)</td>
+                            <td>@pln?.Rotalar.Where(r => r.AtolyeId == 2 && r.UrunId == pln.UrunId)?.Sum(r => r.IslemSure * pln.UrunMiktari)</td>
+                            <td>@pln?.Rotalar.Where(r => r.AtolyeId == 3 && r.UrunId == pln.UrunId)?.Sum(r => r.IslemSure * pln.UrunMiktari)</td>
+                            <td>@pln?.Rotalar.Where(r => r.AtolyeId == 4 && r.UrunId == pln.UrunId)?.Sum(r => r.IslemSure * pln.UrunMiktari)</td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>                       
+                        <td colspan="4">Toplam Süreler(dk) (1 Gün=540dk 5 Gün=2700dk üzerinden hesaplanmaktadır)</td>
+                        <td>@toplamMekanikSure</td>
+                        <td>@toplamMontajSure</td>
+                        <td>@toplamKablajSure</td>
+                        <td>@toplamBoyaSure</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 section-background-1">
+            <div class="section-content text-light text-center">
+                <h4>MEKANİK ATÖLYE</h4>
+                <div class="progress mb-4 d-flex flex-column align-items-center">
+                    <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated" style="width: @mekanikSureYuzde%;" role="progressbar" aria-valuemin="0" aria-valuenow="@mekanikSureYuzde" aria-valuemax="100">@mekanikSureYuzdeFormat</div>
+                </div>
+                <h4>MONTAJ ATÖLYE</h4>
+                <div class="progress mb-4 d-flex flex-column align-items-center">
+                    <div class="progress-bar bg-info progress-bar-striped progress-bar-animated" style="width: @montajSureYuzde%;" role="progressbar" aria-valuemin="0" aria-valuenow="@montajSureYuzde" aria-valuemax="100">@montajSureYuzdeFormat</div>
+                </div>
+                <h4>KABLAJ ATÖLYE</h4>
+                <div class="progress mb-4 d-flex flex-column align-items-center">
+                    <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width: @kablajSureYuzde%;" role="progressbar" aria-valuemin="0" aria-valuenow="@kablajSureYuzde" aria-valuemax="100">@kablajSureYuzdeFormat</div>
+                </div>
+                <h4>BOYA ATÖLYE</h4>
+                <div class="progress mb-4 d-flex flex-column align-items-center">
+                    <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" style="width: @boyaSureYuzde%;" role="progressbar" aria-valuemin="0" aria-valuenow="@boyaSureYuzde" aria-valuemax="100">@boyaSureYuzdeFormat</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

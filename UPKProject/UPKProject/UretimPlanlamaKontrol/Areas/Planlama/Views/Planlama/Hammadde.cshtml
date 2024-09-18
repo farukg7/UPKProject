@@ -1,0 +1,33 @@
+﻿@model IEnumerable<HammaddePlanViewModel>
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="text-center flex-grow-1">Hammaddeler</h2>
+</div>
+
+<table class="table table-hover my-3">
+<thead>
+    <tr>
+        <th>Hammadde Adı</th>
+        <th>Hammadde Miktarı</th>
+        <th>Hammadde Türü</th>
+        <th>Birimi</th>
+        <th>Alış Fiyatı</th>
+        <th>Ürün Bilgisi</th>
+        <th>Kullanım Miktarı</th>
+    </tr>
+</thead>
+<tbody>
+        @foreach (HammaddePlanViewModel hmd in Model)
+        {
+            <tr>
+                <td>@hmd.HammaddeAdi</td>
+                <td>@hmd.HammaddeMiktari</td>
+                <td>@hmd.KategoriAdi</td>
+                <td>@hmd.Birimi</td>
+                <td>@hmd.AlisFiyati</td>
+                <td>@hmd.UrunAdi</td>
+                <td>@hmd.KullanimMiktari</td>
+            </tr>
+        }
+    </tbody>
+</table>

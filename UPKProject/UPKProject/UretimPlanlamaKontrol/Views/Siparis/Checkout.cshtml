@@ -1,0 +1,36 @@
+﻿@model Siparis
+
+<div class="text-danger" asp-validation-summary="All"></div>
+
+<form method="post" asp-action="Checkout">
+    <div class="form-group my-3">
+        <label asp-for="Adi">Adi</label>
+        <input class="form-control" asp-for="Adi" />
+    </div>
+    <div class="form-group my-3">
+        <label asp-for="Alan1"></label>
+        <input class="form-control" asp-for="Alan1" />
+    </div>
+    <div class="form-group my-3">
+        <label asp-for="Alan2"></label>
+        <input class="form-control" asp-for="Alan2" />
+    </div>
+    <div class="form-group my-3">
+        <label asp-for="Alan3"></label>
+        <input class="form-control" asp-for="Alan3" />
+    </div>
+    <div class="form-group my-3">
+        <label asp-for="Sehir"></label>
+        <input class="form-control" asp-for="Sehir" />
+    </div>
+    <div class="form-group my-3">
+        <input asp-for="HediyePaketi">
+        <label>Bu ürünleri hediye paketi yap.</label>
+    </div>
+
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">
+            Siparişi tamamla
+        </button>
+    </div>
+</form>

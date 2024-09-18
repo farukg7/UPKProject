@@ -1,0 +1,48 @@
+﻿@model UrunSiparisViewModel
+
+<div class="text-center mb-4">
+    <div class="display-6">Sipariş Oluştur</div>
+</div>
+
+<form method="post" asp-action="UrunSiparisOlustur">
+    <div class="form-group my-3">
+        <label asp-for="UrunId">Ürün Adı</label>
+        <select class="form-control" asp-items="@ViewBag.Urunler" asp-for="UrunId">
+        </select>
+    </div>
+    <div class="form-group my-3">
+        <label asp-for="MusteriId">Müşteri Adı</label>
+        <select class="form-control" asp-items="@ViewBag.Musteriler" asp-for="MusteriId">
+        </select>
+    </div>
+    <div class="form-group my-3">
+        <label asp-for="ProjeId">Proje Adı</label>
+        <select class="form-control" asp-items="@ViewBag.Projeler" asp-for="ProjeId">
+        </select>
+    </div>
+    <div class="form-group my-3">
+        <label asp-for="UrunSiparisAdedi">Ürün Sipariş Adedi</label>
+        <input asp-for="UrunSiparisAdedi" class="form-control" />
+    </div>
+    <div class="form-group my-3">
+        <label asp-for="UrunSiparisBirimi">Birimi</label>
+        <input asp-for="UrunSiparisBirimi" class="form-control" />
+    </div>
+    <div class="form-group my-3">
+        <label asp-for="UrunTeslimTarihi">UrunTeslimTarihi</label>
+        <input asp-for="UrunTeslimTarihi" class="form-control" />
+    </div>
+
+    <div class="form-group my-3">
+        <div class="btn-group">
+            <button class="btn btn-primary" type="submit">
+                <i class="fa fa-save"></i>
+                Oluştur
+            </button>
+            <a asp-action="Index" class="btn btn-outline-primary">
+                <i class="fa fa-list"></i>
+                Ürünler
+            </a>
+        </div>
+    </div>
+</form>

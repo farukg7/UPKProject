@@ -1,0 +1,18 @@
+﻿@model MalKabulViewModel
+
+
+<div class="container">
+    <h3 class="text-center my-4">Mal Kabul</h3>
+    <form asp-action="MalKabul" method="post">
+        <div class="form-group my-3">
+            <label for="hammaddeAdi">Hammadde Adı</label>
+            <input type="text" class="form-control" id="hammaddeAdi" value="@Model.HammaddeAdi" readonly />
+        </div>
+        <div class="form-group my-3">
+            <label for="HammaddeGelenAdet">Gelen Adet</label>
+            <input type="number" class="form-control" id="HammaddeGelenAdet" name="HammaddeGelenAdet" />
+        </div>
+        <input type="hidden" name="HammaddeSiparisId" value="@Model.HammaddeSiparisId" />
+        <button type="submit" class="btn btn-primary">Kaydet</button>
+    </form> 
+</div>

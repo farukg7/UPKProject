@@ -1,0 +1,10 @@
+﻿/* Tüm sayfa arka plan resmi */
+body {
+    background-image: url('/images/askeri1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow: hidden;
+    background-attachment: fixed; /* Sayfa kaydırıldığında arka plan sabit kalır */
+}
+

@@ -1,0 +1,68 @@
+﻿@model List<PlanViewModel>
+
+
+<style>
+    .centered-cell {
+        text-align: center; 
+        vertical-align: middle; 
+    }
+
+    thead th {
+        text-align: center; 
+        vertical-align: middle; 
+    }
+</style>
+
+<div class="text-center mb-5">
+    <h2>Genel Özet</h2>
+</div>
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Ürün Adı</th>
+            <th>Toplam Sipariş Adedi</th>
+            <th>Toplam Teslim Miktarı</th>
+            <th>Hammadde Adı</th>
+            <th>Kullanım Miktarı</th>
+            <th>Depodaki Hammadde Miktarı</th>
+            <th>Hammadde Sipariş Miktarı</th>
+            <th>Toplam Gereken Miktar</th>
+            <th>Ürün Sipariş Tarihine Göre Eksik Kalacak Hammadde Miktarları</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            
+        
+        Toplam sipariş adedi ve teslim miktarlarını hesaplıyoruz
+            var toplamSiparisAdedi = item.UrunSiparisAdedi.Sum();
+            var toplamTeslimMiktari = item.UrunTeslimMiktari.Sum();
+
+            <tr>
+                <td rowspan="@item.HammaddeAdi.Count" class="centered-cell">@item.UrunAdi</td>
+                <td rowspan="@item.HammaddeAdi.Count" class="centered-cell">@toplamSiparisAdedi</td>
+                <td rowspan="@item.HammaddeAdi.Count" class="centered-cell">@toplamTeslimMiktari</td>
+                <td class="centered-cell">@item.HammaddeAdi[0]</td>
+                <td class="centered-cell">@item.KullanimMiktari[0]</td>
+                <td class="centered-cell">@item.HammaddeMiktari[0]</td>
+                <td class="centered-cell">@item.HammaddeSiparisMiktari[0]</td>
+                <td class="centered-cell">@item.ToplamGerekenMiktar[0]</td>
+                <td class="centered-cell">@item.ZamanindaGelecekSiparisMiktari[0]</td>
+            </tr>
+
+            @for (int i = 1; i < item.HammaddeAdi.Count; i++)
+            {
+                <tr>
+                    <td class="centered-cell">@item.HammaddeAdi[i]</td>
+                    <td class="centered-cell">@item.KullanimMiktari[i]</td>
+                    <td class="centered-cell">@item.HammaddeMiktari[i]</td>
+                    <td class="centered-cell">@item.HammaddeSiparisMiktari[i]</td>
+                    <td class="centered-cell">@item.ToplamGerekenMiktar[i]</td>
+                    <td class="centered-cell">@item.ZamanindaGelecekSiparisMiktari[i]</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
